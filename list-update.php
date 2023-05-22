@@ -1,4 +1,5 @@
 <?php
+session_start();
 global $conn;
 require_once './template/header.php';
 require_once 'core/connection.php'
@@ -15,6 +16,9 @@ require_once 'core/connection.php'
                         $sql = "SELECT * FROM bankers WHERE id = $id";
                         $query = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_assoc($query);
+                        $_SESSION['status'] = [
+                            'message' => 'List updated'
+                        ];
                         ?>
                         <input type="hidden" value="<?php echo $row['id'] ?>" name="id">
                         <div class="mb-4">
